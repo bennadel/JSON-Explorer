@@ -1,0 +1,122 @@
+
+<div
+	class="payload"
+	[ngSwitch]="valueType">
+
+	<ng-template [ngSwitchCase]="( 'Null' )">
+		<div
+			(click)="toggle()"
+			class="label is-null"
+			[class.is-collapsed]="isCollapsed">
+			Null
+		</div>
+		<ng-template [ngIf]="( ! isCollapsed )">
+			<div class="value is-null">
+				null
+			</div>
+		</ng-template>
+	</ng-template>
+
+	<ng-template [ngSwitchCase]="( 'String' )">
+		<div
+			(click)="toggle()"
+			class="label is-string"
+			[class.is-collapsed]="isCollapsed">
+			String
+		</div>
+		<ng-template [ngIf]="( ! isCollapsed )">
+			<div class="value is-string">
+				<a (click)="parseString( $event )">
+					{{ value }}
+				</a>
+			</div>
+		</ng-template>
+	</ng-template>
+
+	<ng-template [ngSwitchCase]="( 'Number' )">
+		<div
+			(click)="toggle()"
+			class="label is-number"
+			[class.is-collapsed]="isCollapsed">
+			Number
+		</div>
+		<ng-template [ngIf]="( ! isCollapsed )">
+			<div class="value is-number">
+				{{ value }}
+			</div>
+		</ng-template>
+	</ng-template>
+
+	<ng-template [ngSwitchCase]="( 'Boolean' )">
+		<div
+			(click)="toggle()"
+			class="label is-boolean"
+			[class.is-collapsed]="isCollapsed">
+			Boolean
+		</div>
+		<ng-template [ngIf]="( ! isCollapsed )">
+			<div class="value is-boolean">
+				{{ value }}
+			</div>
+		</ng-template>
+	</ng-template>
+
+	<ng-template [ngSwitchCase]="( 'Array' )">
+		<div
+			(click)="toggle()"
+			class="header is-array"
+			[class.is-collapsed]="isCollapsed">
+			<div class="type">
+				{{ valueType }}
+			</div>
+			<div class="entry-count">
+				Entries: {{ entryCount }}
+			</div>
+		</div>
+		<ng-template [ngIf]="( ! isCollapsed )">
+			<ng-template ngFor let-subvalue let-index="index" [ngForOf]="value">
+				<div
+					(click)="toggle( index )"
+					class="label is-array"
+					[class.is-collapsed]="collapsedEntries[ index ]">
+					{{ index }}
+				</div>
+				<ng-template [ngIf]="( ! collapsedEntries[ index ] )">
+					<div class="value is-array">
+						<json-node [value]="subvalue"></json-node>
+					</div>
+				</ng-template>
+			</ng-template>
+		</ng-template>
+	</ng-template>
+	
+	<ng-template [ngSwitchCase]="( 'Object' )">
+		<div
+			(click)="toggle()"
+			class="header is-object"
+			[class.is-collapsed]="isCollapsed">
+			<div class="type">
+				{{ valueType }}
+			</div>
+			<div class="entry-count">
+				Entries: {{ entryCount }}
+			</div>
+		</div>
+		<ng-template [ngIf]="( ! isCollapsed )">
+			<ng-template ngFor let-subvalue [ngForOf]="value | keyvalue">
+				<div
+					(click)="toggle( subvalue.key )"
+					class="label is-object"
+					[class.is-collapsed]="collapsedEntries[ subvalue.key ]">
+					{{ subvalue.key }}
+				</div>
+				<ng-template [ngIf]="( ! collapsedEntries[ subvalue.key ] )">
+					<div class="value is-object">
+						<json-node [value]="subvalue.value"></json-node>
+					</div>
+				</ng-template>
+			</ng-template>
+		</ng-template>
+	</ng-template>
+
+</div>

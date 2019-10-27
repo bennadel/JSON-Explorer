@@ -1,0 +1,183 @@
+
+@nullColor: #ED00B5 ;
+@stringColor: #9B00DD ;
+@numberColor: #BC00DD ;
+@booleanColor: #7A00DD ;
+@arrayColor: #2782DD ;
+@objectColor: #E81236 ;
+
+@offsetPercentage: 38% ;
+@padding: 6px ;
+
+:host {
+	display: block ;
+	font-family: monospace ;
+	font-size: inherit ;
+}
+
+.payload {
+	display: inline-grid ;
+	grid-gap: 2px ;
+	grid-template-columns: auto 1fr ;
+}
+
+.header {
+	border: 1px solid #cccccc ;
+	border-radius: 3px 3px 3px 3px ;
+	background-color: #cccccc ;
+	cursor: pointer ;
+	font-weight: bold ;
+	grid-column: 1 / span 2 ;
+	padding: @padding ;
+
+	&.is-null {
+		background-color: @nullColor ;
+		border-color: darken( @nullColor, @offsetPercentage ) ;
+		color: contrast( @nullColor ) ;
+	}
+
+	&.is-string {
+		background-color: @stringColor ;
+		border-color: darken( @stringColor, @offsetPercentage ) ;
+		color: contrast( @stringColor ) ;
+	}
+
+	&.is-number {
+		background-color: @numberColor ;
+		border-color: darken( @numberColor, @offsetPercentage ) ;
+		color: contrast( @numberColor ) ;
+	}
+
+	&.is-boolean {
+		background-color: @booleanColor ;
+		border-color: darken( @booleanColor, @offsetPercentage ) ;
+		color: contrast( @booleanColor ) ;
+	}
+
+	&.is-array {
+		background-color: @arrayColor ;
+		border-color: darken( @arrayColor, @offsetPercentage ) ;
+		color: contrast( @arrayColor ) ;
+	}
+
+	&.is-object {
+		background-color: @objectColor ;
+		border-color: darken( @objectColor, @offsetPercentage ) ;
+		color: contrast( @objectColor ) ;
+	}
+
+	&.is-collapsed {
+		background-color: #333333 ;
+		border-color: #000000 ;
+		color: #f0f0f0 ;
+		font-style: italic ;
+	}
+
+	&:hover {
+		border-color: #ffffff ;
+	}
+}
+
+.type {}
+
+.entry-count {
+	margin-top: 4px ;
+}
+
+.label {
+	background-color: #cccccc ;
+	border: 1px solid #cccccc ;
+	border-radius: 3px 3px 3px 3px ;
+	cursor: pointer ;
+	grid-column: 1 / span 1 ;
+	padding: @padding ;
+
+	&.is-null {
+		background-color: @nullColor ;
+		border-color: darken( @nullColor, @offsetPercentage ) ;
+		color: contrast( @nullColor ) ;
+	}
+
+	&.is-string {
+		background-color: @stringColor ;
+		border-color: darken( @stringColor, @offsetPercentage ) ;
+		color: contrast( @stringColor ) ;
+	}
+
+	&.is-number {
+		background-color: @numberColor ;
+		border-color: darken( @numberColor, @offsetPercentage ) ;
+		color: contrast( @numberColor ) ;
+	}
+
+	&.is-boolean {
+		background-color: @booleanColor ;
+		border-color: darken( @booleanColor, @offsetPercentage ) ;
+		color: contrast( @booleanColor ) ;
+	}
+
+	&.is-array {
+		background-color: @arrayColor ;
+		border-color: darken( @arrayColor, @offsetPercentage ) ;
+		color: contrast( @arrayColor ) ;
+	}
+
+	&.is-object {
+		background-color: @objectColor ;
+		border-color: darken( @objectColor, @offsetPercentage ) ;
+		color: contrast( @objectColor ) ;
+	}
+
+	&.is-collapsed {
+		background-color: #333333 ;
+		border-color: #000000 ;
+		color: #f0f0f0 ;
+		font-style: italic ;
+	}
+
+	&:hover {
+		border-color: #ffffff ;
+	}
+}
+
+.value {
+	background-color: #f0f0f0 ;
+	border: 1px solid #cccccc ;
+	border-radius: 3px 3px 3px 3px ;
+	grid-column: 2 / span 1 ;
+	padding: @padding ;
+
+	&.is-null {
+		background-color: lighten( @nullColor, @offsetPercentage ) ;
+		border-color: darken( @nullColor, @offsetPercentage ) ;
+	}
+
+	&.is-string {
+		background-color: lighten( @stringColor, @offsetPercentage ) ;
+		border-color: darken( @stringColor, @offsetPercentage ) ;
+	}
+
+	&.is-number {
+		background-color: lighten( @numberColor, @offsetPercentage ) ;
+		border-color: darken( @numberColor, @offsetPercentage ) ;
+	}
+
+	&.is-boolean {
+		background-color: lighten( @booleanColor, @offsetPercentage ) ;
+		border-color: darken( @booleanColor, @offsetPercentage ) ;
+	}
+
+	&.is-array {
+		background-color: lighten( @arrayColor, @offsetPercentage ) ;
+		border-color: darken( @arrayColor, @offsetPercentage ) ;
+	}
+
+	&.is-object {
+		background-color: lighten( @objectColor, @offsetPercentage ) ;
+		border-color: darken( @objectColor, @offsetPercentage ) ;
+	}
+
+	&.is-string a {
+		display: block ;
+	}
+}
