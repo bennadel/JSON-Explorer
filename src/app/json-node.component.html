@@ -3,7 +3,7 @@
 	class="payload"
 	[ngSwitch]="valueType">
 
-	<ng-template [ngSwitchCase]="( 'Null' )">
+	<ng-template ngSwitchCase="Null">
 		<div
 			(click)="toggle()"
 			class="label is-null"
@@ -17,7 +17,7 @@
 		</ng-template>
 	</ng-template>
 
-	<ng-template [ngSwitchCase]="( 'String' )">
+	<ng-template ngSwitchCase="String">
 		<div
 			(click)="toggle()"
 			class="label is-string"
@@ -33,7 +33,7 @@
 		</ng-template>
 	</ng-template>
 
-	<ng-template [ngSwitchCase]="( 'Number' )">
+	<ng-template ngSwitchCase="Number">
 		<div
 			(click)="toggle()"
 			class="label is-number"
@@ -47,7 +47,7 @@
 		</ng-template>
 	</ng-template>
 
-	<ng-template [ngSwitchCase]="( 'Boolean' )">
+	<ng-template ngSwitchCase="Boolean">
 		<div
 			(click)="toggle()"
 			class="label is-boolean"
@@ -61,13 +61,13 @@
 		</ng-template>
 	</ng-template>
 
-	<ng-template [ngSwitchCase]="( 'Array' )">
+	<ng-template ngSwitchCase="Array">
 		<div
 			(click)="toggle()"
 			class="header is-array"
 			[class.is-collapsed]="isCollapsed">
 			<div class="type">
-				{{ valueType }}
+				Array
 			</div>
 			<div class="entry-count">
 				Entries: {{ entryCount }}
@@ -90,13 +90,13 @@
 		</ng-template>
 	</ng-template>
 	
-	<ng-template [ngSwitchCase]="( 'Object' )">
+	<ng-template ngSwitchCase="Object">
 		<div
 			(click)="toggle()"
 			class="header is-object"
 			[class.is-collapsed]="isCollapsed">
 			<div class="type">
-				{{ valueType }}
+				Object
 			</div>
 			<div class="entry-count">
 				Entries: {{ entryCount }}

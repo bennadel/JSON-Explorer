@@ -1,5 +1,21 @@
 
-export var demoPayload = {
+interface DemoPayload {
+	type: string,
+	name: string,
+	children: {
+		type: string,
+		name: string,
+		age: number,
+		nicknames: string[],
+		isAdorable: boolean
+	}[],
+	age: number,
+	metadata: string,
+	alternateEgo: null
+
+}
+
+export var demoPayload: DemoPayload = {
 	type: "hooman",
 	name: "Ben",
 	children: [
@@ -17,5 +33,5 @@ export var demoPayload = {
 	],
 	age: 39,
 	metadata: `{ "_id": "c-349dk39", "createdAt": 12345.34399 }`,
-	altEgo: null
+	alternateEgo: null 
 };

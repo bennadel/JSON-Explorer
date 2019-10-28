@@ -11,46 +11,7 @@ import { demoPayload } from "./demo-data";
 @Component({
 	selector: "app-root",
 	styleUrls: [ "./app.component.less" ],
-	template:
-	`
-		<div *ngIf="errorMessage" class="error">
-			<strong>An error occurred:</strong> {{ errorMessage }}
-		</div>
-
-		<h2>
-			JSON Payload
-		</h2>
-
-		<form (submit)="processForm()" class="form">
-
-			<textarea
-				name="json"
-				[(ngModel)]="form.json"
-				(keydown.Meta.Enter)="processForm()"
-				class="input"
-			></textarea>
-
-			<button type="submit" class="button">
-				Explore
-			</button>
-
-		</form>
-
-		<ng-template [ngIf]="( payload !== undefined )">
-
-			<h2>
-				Deserialized Data Structure
-			</h2>
-
-			<json-tree [value]="payload"></json-tree>
-
-			<p>
-				<strong>Pro Tip:</strong> If a String value contains JSON, you can try
-				to parse it by using <strong><code>Meta+Click</code></strong>.
-			</p>
-
-		</ng-template>
-	`
+	templateUrl: "./app.component.html"
 })
 export class AppComponent {
 
@@ -65,9 +26,20 @@ export class AppComponent {
 
 		this.errorMessage = "";
 		this.form = {
-			json: this.getFromUrl()
+			json: ""
 		};
 		this.payload = undefined;
+
+	}
+
+	// ---
+	// PUBLIC METHODS.
+	// ---
+
+	// I get called once after the inputs have been bound for the first time.
+	public ngOnInit() : void {
+
+		this.form.json = this.getFromUrl();
 
 		// FOR THE DEMO
 		// ------------
@@ -79,15 +51,6 @@ export class AppComponent {
 			this.form.json = JSON.stringify( demoPayload );
 
 		}
-
-	}
-
-	// ---
-	// PUBLIC METHODS.
-	// ---
-
-	// I get called once after the inputs have been bound for the first time.
-	public ngOnInit() : void {
 
 		if ( this.form.json ) {
 
@@ -105,7 +68,7 @@ export class AppComponent {
 		this.payload = undefined;
 		this.setToUrl( this.form.json );
 
-		// If the form is empty, clear the current state.
+		// If the form is empty, leave the current state cleared.
 		if ( ! this.form.json ) {
 
 			return;
@@ -133,6 +96,7 @@ export class AppComponent {
 	// PRIVATE METHODS.
 	// ---
 
+	// I try get the data persisted in the URL (otherwise returns empty string).
 	private getFromUrl() : string {
 
 		try {
@@ -149,6 +113,7 @@ export class AppComponent {
 	}
 
 
+	// I try to persist the given data to the URL (fails silently).
 	private setToUrl( data: string ) : void {
 
 		try {

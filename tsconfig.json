@@ -16,7 +16,7 @@
 		],
 		"module": "esnext",
 		"moduleResolution": "node",
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"outDir": "./dist/out-tsc",
 		"pretty": true,
 		"removeComments": false,

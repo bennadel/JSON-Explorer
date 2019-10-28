@@ -1,0 +1,40 @@
+
+<p>
+	Paste your JSON payload into the following input and hit
+	<strong>Explore</strong>.
+</p>
+
+<div *ngIf="errorMessage" class="error">
+	<strong>An error occurred:</strong> {{ errorMessage }}
+</div>
+
+<form (submit)="processForm()" class="form">
+
+	<textarea
+		name="json"
+		[(ngModel)]="form.json"
+		(keydown.Meta.Enter)="processForm()"
+		placeholder="Paste JSON data...."
+		class="input"
+	></textarea>
+
+	<button type="submit" class="button">
+		Explore
+	</button>
+
+</form>
+
+<ng-template [ngIf]="( payload !== undefined )">
+
+	<h2>
+		Parsed Data Structure
+	</h2>
+
+	<json-tree [value]="payload"></json-tree>
+
+	<p>
+		<strong>Pro Tip:</strong> If a String value contains JSON, you can try
+		to parse it by using <strong><code>Meta+Click</code></strong>.
+	</p>
+
+</ng-template>

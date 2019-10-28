@@ -90,13 +90,13 @@ export class JsonNodeComponent {
 	}
 
 
-	// I get called after the inputs bindings have been updated.
+	// I get called when the input bindings have been updated.
 	public ngOnChanges() : void {
 
 		this.entryCount = 0;
-		this.collapsedEntries = Object.create( null );
 		this.isCollapsed = false;
 		this.valueType = this.calculateType( this.value );
+		this.clearCollapsedEntries();
 
 		if ( this.valueType === "Object" ) {
 
@@ -127,6 +127,11 @@ export class JsonNodeComponent {
 			this.value = JSON.parse( this.value );
 			this.ngOnChanges();
 
+			console.group( "String Parsing" );
+			console.log( "The value was successfully parsed as JSON." );
+			console.log( this.value );
+			console.groupEnd();
+
 		} catch ( error ) {
 
 			console.group( "String Parsing" );
@@ -149,10 +154,10 @@ export class JsonNodeComponent {
 			this.isCollapsed = ! this.isCollapsed;
 
 			// If we're collapsing the top-level value, then reset any settings for the
-			// sub-entires (for Struct and Array types only).
+			// sub-entry visibility.
 			if ( this.isCollapsed ) {
 
-				this.collapsedEntries = Object.create( null );
+				this.clearCollapsedEntries();
 
 			}
 
@@ -160,6 +165,21 @@ export class JsonNodeComponent {
 		} else {
 
 			this.collapsedEntries[ index ] = ! this.collapsedEntries[ index ];
+
+		}
+
+	}
+
+	// ---
+	// PRIVATE METHODS.
+	// ---
+
+	// I clear the collapsed entries index.
+	private clearCollapsedEntries() : void {
+
+		for ( var key in this.collapsedEntries ) {
+
+			delete( this.collapsedEntries[ key ] );
 
 		}
 
